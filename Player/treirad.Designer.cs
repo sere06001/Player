@@ -39,6 +39,8 @@
             ruta3 = new Button();
             ruta2 = new Button();
             ruta1 = new Button();
+            tillbakabtn = new Button();
+            nymatchbtn = new Button();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -157,11 +159,33 @@
             ruta1.UseVisualStyleBackColor = true;
             ruta1.Click += ruta1_Click;
             // 
+            // tillbakabtn
+            // 
+            tillbakabtn.Location = new Point(216, 91);
+            tillbakabtn.Name = "tillbakabtn";
+            tillbakabtn.Size = new Size(75, 23);
+            tillbakabtn.TabIndex = 2;
+            tillbakabtn.Text = "Tillbaka";
+            tillbakabtn.UseVisualStyleBackColor = true;
+            tillbakabtn.Click += tillbakabtn_Click;
+            // 
+            // nymatchbtn
+            // 
+            nymatchbtn.Location = new Point(216, 130);
+            nymatchbtn.Name = "nymatchbtn";
+            nymatchbtn.Size = new Size(75, 23);
+            nymatchbtn.TabIndex = 3;
+            nymatchbtn.Text = "Ny match";
+            nymatchbtn.UseVisualStyleBackColor = true;
+            nymatchbtn.Click += nymatchbtn_Click;
+            // 
             // treirad
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(nymatchbtn);
+            Controls.Add(tillbakabtn);
             Controls.Add(tableLayoutPanel1);
             Controls.Add(label1);
             Name = "treirad";
@@ -185,5 +209,7 @@
         private Button ruta1;
         private Button ruta8;
         private Button ruta9;
+        private Button tillbakabtn;
+        private Button nymatchbtn;
     }
 }

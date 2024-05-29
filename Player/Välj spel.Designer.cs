@@ -30,7 +30,7 @@
         {
             väljspellabel = new Label();
             treiradbtn = new Button();
-            minesweeperbtn = new Button();
+            snakebtn = new Button();
             SuspendLayout();
             // 
             // väljspellabel
@@ -52,23 +52,23 @@
             treiradbtn.UseVisualStyleBackColor = true;
             treiradbtn.Click += treiradbtn_Click;
             // 
-            // minesweeperbtn
+            // snakebtn
             // 
-            minesweeperbtn.AutoSize = true;
-            minesweeperbtn.Location = new Point(379, 180);
-            minesweeperbtn.Name = "minesweeperbtn";
-            minesweeperbtn.Size = new Size(87, 25);
-            minesweeperbtn.TabIndex = 2;
-            minesweeperbtn.Text = "Minesweeper";
-            minesweeperbtn.UseVisualStyleBackColor = true;
-            minesweeperbtn.Click += minesweeperbtn_Click;
+            snakebtn.AutoSize = true;
+            snakebtn.Location = new Point(379, 180);
+            snakebtn.Name = "snakebtn";
+            snakebtn.Size = new Size(87, 25);
+            snakebtn.TabIndex = 2;
+            snakebtn.Text = "Snake";
+            snakebtn.UseVisualStyleBackColor = true;
+            snakebtn.Click += minesweeperbtn_Click;
             // 
             // Välj_spel
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
-            Controls.Add(minesweeperbtn);
+            Controls.Add(snakebtn);
             Controls.Add(treiradbtn);
             Controls.Add(väljspellabel);
             Name = "Välj_spel";
@@ -81,6 +81,6 @@
 
         private Label väljspellabel;
         private Button treiradbtn;
-        private Button minesweeperbtn;
+        private Button snakebtn;
     }
 }

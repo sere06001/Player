@@ -18,10 +18,14 @@ namespace Player
         private bool OWin = false;
         private bool Draw = false;
 
+        private bool Dator = false;
+
+        private int Svårighetsgrad = 1;
+
         public treirad()
         {
             InitializeComponent();
-
+            DöljNivå();
         }
 
         private void treirad_Load(object sender, EventArgs e)
@@ -93,7 +97,7 @@ namespace Player
                 }
                 else
                 {
-                    
+
                     Deactivategrid();
                 }
             }
@@ -124,7 +128,7 @@ namespace Player
                 }
                 else
                 {
-                    
+
                     Deactivategrid();
                 }
             }
@@ -134,7 +138,7 @@ namespace Player
         }
         private void Win()
         {
-            if (ruta1.Text == "X" && ruta2.Text == "X" && ruta3.Text == "X" || ruta4.Text == "X" && ruta5.Text == "X" && ruta6.Text == "X" || ruta7.Text == "X"&& ruta8.Text == "X" && ruta9.Text == "X" || ruta1.Text == "X" && ruta4.Text == "X" && ruta7.Text == "X" || ruta2.Text == "X" && ruta5.Text == "X" && ruta8.Text == "X" || ruta3.Text == "X" && ruta6.Text == "X" && ruta9.Text == "X" || ruta1.Text == "X" && ruta5.Text == "X" && ruta9.Text == "X" || ruta3.Text == "X" && ruta5.Text == "X" && ruta7.Text == "X")
+            if (ruta1.Text == "X" && ruta2.Text == "X" && ruta3.Text == "X" || ruta4.Text == "X" && ruta5.Text == "X" && ruta6.Text == "X" || ruta7.Text == "X" && ruta8.Text == "X" && ruta9.Text == "X" || ruta1.Text == "X" && ruta4.Text == "X" && ruta7.Text == "X" || ruta2.Text == "X" && ruta5.Text == "X" && ruta8.Text == "X" || ruta3.Text == "X" && ruta6.Text == "X" && ruta9.Text == "X" || ruta1.Text == "X" && ruta5.Text == "X" && ruta9.Text == "X" || ruta3.Text == "X" && ruta5.Text == "X" && ruta7.Text == "X")
             {
                 XWin = true;
             }
@@ -267,11 +271,6 @@ namespace Player
             Win();
         }
 
-        private void label1_Click(object sender, EventArgs e)
-        {
-
-        }
-
         private void tillbakabtn_Click(object sender, EventArgs e)
         {
             this.Hide();
@@ -285,6 +284,76 @@ namespace Player
             Activategrid();
             Xtur = true;
             label1.Text = "Det är X tur";
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void datorbtn_Click(object sender, EventArgs e)
+        {
+            Dator = !Dator;
+            if (Dator)
+            {
+                datorbtn.Text = "Spela mot spelare.";
+                VisaNivå();
+            }
+            else
+            {
+                datorbtn.Text = "Spela mot dator.";
+                DöljNivå();
+            }
+        }
+
+        private void VisaNivå()
+        {
+            label2.Show();
+            lättbtn.Show();
+            mediumbtn.Show();
+            omöjligbtn.Show();
+        }
+
+        private void DöljNivå()
+        {
+            label2.Hide();
+            lättbtn.Hide();
+            mediumbtn.Hide();
+            omöjligbtn.Hide();
+        }
+
+        private void lättbtn_Click(object sender, EventArgs e)
+        {
+            Svårighetsgrad = 1;
+            AI(Svårighetsgrad);
+        }
+
+        private void mediumbtn_Click(object sender, EventArgs e)
+        {
+            Svårighetsgrad = 2;
+            AI(Svårighetsgrad);
+        }
+
+        private void omöjligbtn_Click(object sender, EventArgs e)
+        {
+            Svårighetsgrad = 3;
+            AI(Svårighetsgrad);
+        }
+
+        private void AI(int nivå)
+        {
+            switch (nivå)
+            {
+                case 1:
+
+                    break;
+                case 2:
+
+                    break;
+                case 3:
+
+                    break;
+            }
         }
     }
 }

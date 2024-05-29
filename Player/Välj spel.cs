@@ -26,9 +26,9 @@ namespace Player
 
         private void minesweeperbtn_Click(object sender, EventArgs e)
         {
-            Minesweeper minesweeper = new Minesweeper();
+            Snake snake = new Snake();
             this.Hide();
-            minesweeper.Show();
+            snake.Show();
         }
     }
 }

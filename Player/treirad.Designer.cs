@@ -41,6 +41,11 @@
             ruta1 = new Button();
             tillbakabtn = new Button();
             nymatchbtn = new Button();
+            datorbtn = new Button();
+            lättbtn = new Button();
+            mediumbtn = new Button();
+            omöjligbtn = new Button();
+            label2 = new Label();
             tableLayoutPanel1.SuspendLayout();
             SuspendLayout();
             // 
@@ -179,11 +184,65 @@
             nymatchbtn.UseVisualStyleBackColor = true;
             nymatchbtn.Click += nymatchbtn_Click;
             // 
+            // datorbtn
+            // 
+            datorbtn.Location = new Point(216, 165);
+            datorbtn.Name = "datorbtn";
+            datorbtn.Size = new Size(75, 41);
+            datorbtn.TabIndex = 4;
+            datorbtn.Text = "Spela mot dator";
+            datorbtn.UseVisualStyleBackColor = true;
+            datorbtn.Click += datorbtn_Click;
+            // 
+            // lättbtn
+            // 
+            lättbtn.Location = new Point(216, 258);
+            lättbtn.Name = "lättbtn";
+            lättbtn.Size = new Size(75, 23);
+            lättbtn.TabIndex = 5;
+            lättbtn.Text = "Lätt";
+            lättbtn.UseVisualStyleBackColor = true;
+            lättbtn.Click += lättbtn_Click;
+            // 
+            // mediumbtn
+            // 
+            mediumbtn.Location = new Point(216, 295);
+            mediumbtn.Name = "mediumbtn";
+            mediumbtn.Size = new Size(75, 23);
+            mediumbtn.TabIndex = 6;
+            mediumbtn.Text = "Medium";
+            mediumbtn.UseVisualStyleBackColor = true;
+            mediumbtn.Click += mediumbtn_Click;
+            // 
+            // omöjligbtn
+            // 
+            omöjligbtn.Location = new Point(216, 333);
+            omöjligbtn.Name = "omöjligbtn";
+            omöjligbtn.Size = new Size(75, 23);
+            omöjligbtn.TabIndex = 7;
+            omöjligbtn.Text = "Omöjlig";
+            omöjligbtn.UseVisualStyleBackColor = true;
+            omöjligbtn.Click += omöjligbtn_Click;
+            // 
+            // label2
+            // 
+            label2.AutoSize = true;
+            label2.Location = new Point(201, 221);
+            label2.Name = "label2";
+            label2.Size = new Size(105, 15);
+            label2.TabIndex = 8;
+            label2.Text = "Välj svårighetsgrad";
+            // 
             // treirad
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label2);
+            Controls.Add(omöjligbtn);
+            Controls.Add(mediumbtn);
+            Controls.Add(lättbtn);
+            Controls.Add(datorbtn);
             Controls.Add(nymatchbtn);
             Controls.Add(tillbakabtn);
             Controls.Add(tableLayoutPanel1);
@@ -211,5 +270,10 @@
         private Button ruta9;
         private Button tillbakabtn;
         private Button nymatchbtn;
+        private Button datorbtn;
+        private Button lättbtn;
+        private Button mediumbtn;
+        private Button omöjligbtn;
+        private Label label2;
     }
 }

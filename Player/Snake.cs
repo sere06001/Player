@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Drawing;
 using System.Linq;
+using System.Reflection.Emit;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
@@ -13,7 +14,7 @@ namespace Player
     public partial class Snake : Form
     {
         private const int cellSize = 20;
-        private const int boardSize = 20;
+        private int boardSize;
         private PictureBox[,] pictureBoxes;
         private Point[] snake;
         private Point food;
@@ -22,25 +23,32 @@ namespace Player
         private int snakeLength;
         private bool alert;
         private bool directionUpdated;
+        private bool isClosing;
 
+        private int offsetX;
+        private int offsetY;
         public Snake()
         {
             InitializeComponent();
-            InitializeGame();
         }
 
         private void Snake_Load(object sender, EventArgs e)
         {
 
         }
-
         private void InitializeGame()
         {
+            alert = false;
             score = 0;
+            snakeLength = 4;
+            directionUpdated = false;
+            direction = Direction.Right;
+            isClosing = false;
+
             pictureBoxes = new PictureBox[boardSize, boardSize];
             snake = new Point[boardSize * boardSize];
-            snakeLength = 1; 
-            directionUpdated = false;
+
+            this.Controls.Clear();
 
             for (int y = 0; y < boardSize; y++)
             {
@@ -53,20 +61,31 @@ namespace Player
                         BorderStyle = BorderStyle.FixedSingle,
                         Visible = true,
                         Parent = this,
-                        BackColor = Color.White 
+                        BackColor = Color.White
                     };
+                    this.Controls.Add(pictureBoxes[x, y]);
                 }
             }
 
-            snake[0] = new Point(boardSize / 2, boardSize / 2);
+            lblScore = new System.Windows.Forms.Label
+            {
+                Text = $"Poäng: {score}",
+                Location = new Point(offsetX, offsetY),
+                AutoSize = true,
+                Font = new Font("Arial", 14, FontStyle.Bold)
+            };
+            this.Controls.Add(lblScore);
+
+            snake[0] = new Point(2, boardSize / 2);
 
             GenerateFood();
 
-            timer = new System.Windows.Forms.Timer { Interval = 100 };
+            timer = new System.Windows.Forms.Timer { Interval = 125 };
             timer.Tick += Timer_Tick;
             timer.Start();
 
             this.KeyDown += new KeyEventHandler(Snake_KeyDown);
+            this.FormClosing += new FormClosingEventHandler(Snake_FormClosing);
             this.Focus();
         }
 
@@ -150,20 +169,41 @@ namespace Player
 
             pictureBoxes[food.X, food.Y].BackColor = Color.Red;
 
-            lblScore.Text = $"Score: {score}";
+            lblScore.Text = $"Poäng: {score}";
         }
 
         private void GameOver()
         {
             timer.Stop();
-            if (!alert)
+            if (!alert && !isClosing)
             {
-                MessageBox.Show($"Game Over! Your score is {score}");
                 alert = true;
+                DialogResult result = MessageBox.Show($"Du lyckades äta {score} matbitar", "Du dog!", MessageBoxButtons.OKCancel);
+                if (result == DialogResult.OK)
+                {
+                    if (!isClosing)
+                    {
+                        ResetGame();
+                    }
+                }
+                else
+                {
+                    snakeLength = 0;
+                    this.Hide();
+                    Snake f1 = new Snake();
+                    f1.Show();
+                }
+                alert = false;
             }
 
+            
+        }
+
+        private void ResetGame()
+        {
             InitializeGame();
         }
+
         private enum Direction
         {
             Up,
@@ -173,6 +213,7 @@ namespace Player
         }
 
         private Direction direction = Direction.Right;
+
         private void Snake_KeyDown(object sender, KeyEventArgs e)
         {
             if (directionUpdated) return;
@@ -253,6 +294,55 @@ namespace Player
                     }
                     break;
             }
+        }
+
+        private void Snake_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            isClosing = true;
+            timer.Stop();
+        }
+
+        private void tillbakabtn_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            Välj_spel f1 = new Välj_spel();
+            f1.Show();
+        }
+
+        public void lblScore_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void smallbtn_Click_1(object sender, EventArgs e)
+        {
+            offsetX = 75;
+            offsetY = 215;
+            boardSize = 10;
+            InitializeGame();
+        }
+
+        private void medbtn_Click_1(object sender, EventArgs e)
+        {
+            offsetX = 100;
+            offsetY = 315;
+            boardSize = 15;
+            InitializeGame();
+        }
+
+        private void hardbtn_Click(object sender, EventArgs e)
+        {
+            offsetX = 125;
+            offsetY = 415;
+            boardSize = 20;
+            InitializeGame();
+        }
+
+        private void tillbakabtn_Click_1(object sender, EventArgs e)
+        {
+            this.Hide();
+            Välj_spel f1 = new Välj_spel();
+            f1.Show();
         }
     }
 }

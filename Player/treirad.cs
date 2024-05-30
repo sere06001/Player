@@ -17,16 +17,9 @@ namespace Player
         private bool XWin = false;
         private bool OWin = false;
         private bool Draw = false;
-
-        private bool Dator = false;
-        private bool Datortur = false;
-
-        private int Svårighetsgrad = 1;
-
         public treirad()
         {
             InitializeComponent();
-            DöljNivå();
         }
 
         private void treirad_Load(object sender, EventArgs e)
@@ -71,32 +64,17 @@ namespace Player
         }
         private void Vemstur(Button button)
         {
-            if (!Dator)
+            if (Xtur)
             {
-                if (Xtur)
-                {
-                    label1.Text = "Det är O tur";
-                    Xtur = false;
-                    button.Text = "X";
-                }
-                else if (!Xtur)
-                {
-                    label1.Text = "Det är X tur";
-                    Xtur = true;
-                    button.Text = "O";
-                }
-            }
-            else if (Datortur)
-            {
-                label1.Text = "Det är datorns tur";
-                Datortur = false;
-                button.Text = "O";
-            }
-            else
-            {
-                label1.Text = "Det är din tur";
-                Datortur = true;
+                label1.Text = "Det är O tur";
+                Xtur = false;
                 button.Text = "X";
+            }
+            else if (!Xtur)
+            {
+                label1.Text = "Det är X tur";
+                Xtur = true;
+                button.Text = "O";
             }
         }
         private void Winpopup()
@@ -305,74 +283,6 @@ namespace Player
         private void label1_Click(object sender, EventArgs e)
         {
 
-        }
-
-        private void datorbtn_Click(object sender, EventArgs e)
-        {
-            Dator = !Dator;
-            if (Dator)
-            {
-                datorbtn.Text = "Spela mot spelare.";
-                VisaNivå();
-            }
-            else
-            {
-                datorbtn.Text = "Spela mot dator.";
-                DöljNivå();
-            }
-        }
-
-        private void VisaNivå()
-        {
-            label2.Show();
-            lättbtn.Show();
-            mediumbtn.Show();
-            omöjligbtn.Show();
-        }
-
-        private void DöljNivå()
-        {
-            label2.Hide();
-            lättbtn.Hide();
-            mediumbtn.Hide();
-            omöjligbtn.Hide();
-        }
-
-        private void lättbtn_Click(object sender, EventArgs e)
-        {
-            Svårighetsgrad = 1;
-            AI(Svårighetsgrad);
-        }
-
-        private void mediumbtn_Click(object sender, EventArgs e)
-        {
-            Svårighetsgrad = 2;
-            AI(Svårighetsgrad);
-        }
-
-        private void omöjligbtn_Click(object sender, EventArgs e)
-        {
-            Svårighetsgrad = 3;
-            AI(Svårighetsgrad);
-        }
-
-        private void AI(int nivå)
-        {
-            switch (nivå)
-            {
-                case 1:
-                    Resetgrid();
-                    Xtur = true;
-                    break;
-                case 2:
-                    Resetgrid();
-                    Xtur = true;
-                    break;
-                case 3:
-                    Resetgrid();
-                    Xtur = true;
-                    break;
-            }
         }
     }
 }

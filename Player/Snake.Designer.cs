@@ -31,26 +31,39 @@
             components = new System.ComponentModel.Container();
             timer1 = new System.Windows.Forms.Timer(components);
             printDialog1 = new PrintDialog();
+            label1 = new Label();
             SuspendLayout();
             // 
             // printDialog1
             // 
             printDialog1.UseEXDialog = true;
             // 
+            // label1
+            // 
+            label1.AutoSize = true;
+            label1.Location = new Point(348, 76);
+            label1.Name = "label1";
+            label1.Size = new Size(38, 15);
+            label1.TabIndex = 0;
+            label1.Text = "label1";
+            // 
             // Snake
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(label1);
             Name = "Snake";
             Text = "Snake";
             Load += Snake_Load;
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
 
         private System.Windows.Forms.Timer timer1;
         private PrintDialog printDialog1;
+        private Label label1;
     }
 }

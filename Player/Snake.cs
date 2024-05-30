@@ -17,7 +17,7 @@ namespace Player
         private PictureBox[,] pictureBoxes;
         private Point[] snake;
         private Point food;
-        //private Timer timer;
+        private System.Windows.Forms.Timer timer;
         private int score;
 
         public Snake()
@@ -61,9 +61,9 @@ namespace Player
             GenerateFood();
 
             // Initialize timer
-            //timer = new Timer { Interval = 100 };
-            //timer.Tick += Timer_Tick;
-            //timer.Start();
+            timer = new System.Windows.Forms.Timer { Interval = 100 };
+            timer.Tick += Timer_Tick;
+            timer.Start();
         }
 
         private void GenerateFood()
@@ -151,12 +151,12 @@ namespace Player
             pictureBoxes[food.X, food.Y].BackColor = Color.Red; // Draw food
 
             // Update score label
-            //lblScore.Text = $"Score: {score}";
+            lblScore.Text = $"Score: {score}";
         }
 
         private void GameOver()
         {
-            //timer.Stop();
+            timer.Stop();
             MessageBox.Show($"Game Over! Your score is {score}");
             InitializeGame();
         }

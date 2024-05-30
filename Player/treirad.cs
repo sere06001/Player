@@ -19,6 +19,7 @@ namespace Player
         private bool Draw = false;
 
         private bool Dator = false;
+        private bool Datortur = false;
 
         private int Svårighetsgrad = 1;
 
@@ -70,17 +71,32 @@ namespace Player
         }
         private void Vemstur(Button button)
         {
-            if (Xtur)
+            if (!Dator)
             {
-                label1.Text = "Det är O tur";
-                Xtur = false;
-                button.Text = "X";
+                if (Xtur)
+                {
+                    label1.Text = "Det är O tur";
+                    Xtur = false;
+                    button.Text = "X";
+                }
+                else if (!Xtur)
+                {
+                    label1.Text = "Det är X tur";
+                    Xtur = true;
+                    button.Text = "O";
+                }
+            }
+            else if (Datortur)
+            {
+                label1.Text = "Det är datorns tur";
+                Datortur = false;
+                button.Text = "O";
             }
             else
             {
-                label1.Text = "Det är X tur";
-                Xtur = true;
-                button.Text = "O";
+                label1.Text = "Det är din tur";
+                Datortur = true;
+                button.Text = "X";
             }
         }
         private void Winpopup()
@@ -345,13 +361,16 @@ namespace Player
             switch (nivå)
             {
                 case 1:
-
+                    Resetgrid();
+                    Xtur = true;
                     break;
                 case 2:
-
+                    Resetgrid();
+                    Xtur = true;
                     break;
                 case 3:
-
+                    Resetgrid();
+                    Xtur = true;
                     break;
             }
         }

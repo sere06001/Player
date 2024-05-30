@@ -21,7 +21,7 @@ namespace Player
         private int score;
         private int snakeLength;
         private bool alert;
-        private bool directionUpdated; // Flag to track direction updates
+        private bool directionUpdated;
 
         public Snake()
         {
@@ -39,10 +39,9 @@ namespace Player
             score = 0;
             pictureBoxes = new PictureBox[boardSize, boardSize];
             snake = new Point[boardSize * boardSize];
-            snakeLength = 1; // Start with one segment
-            directionUpdated = false; // Reset the direction update flag
+            snakeLength = 1; 
+            directionUpdated = false;
 
-            // Initialize PictureBoxes and snake array
             for (int y = 0; y < boardSize; y++)
             {
                 for (int x = 0; x < boardSize; x++)
@@ -54,25 +53,21 @@ namespace Player
                         BorderStyle = BorderStyle.FixedSingle,
                         Visible = true,
                         Parent = this,
-                        BackColor = Color.White // Set initial color of cells
+                        BackColor = Color.White 
                     };
                 }
             }
 
-            // Initialize snake
             snake[0] = new Point(boardSize / 2, boardSize / 2);
 
-            // Generate initial food
             GenerateFood();
 
-            // Initialize timer
             timer = new System.Windows.Forms.Timer { Interval = 100 };
             timer.Tick += Timer_Tick;
             timer.Start();
 
-            // Add KeyDown event handler
             this.KeyDown += new KeyEventHandler(Snake_KeyDown);
-            this.Focus(); // Make sure the form has focus to receive key events
+            this.Focus();
         }
 
         private void GenerateFood()
@@ -81,7 +76,7 @@ namespace Player
             do
             {
                 food = new Point(rand.Next(0, boardSize), rand.Next(0, boardSize));
-            } while (Array.IndexOf(snake, food, 0, snakeLength) != -1); // Ensure food is not on the snake
+            } while (Array.IndexOf(snake, food, 0, snakeLength) != -1);
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -89,18 +84,16 @@ namespace Player
             MoveSnake();
             CheckCollision();
             UpdateUI();
-            directionUpdated = false; // Reset the direction update flag
+            directionUpdated = false;
         }
 
         private void MoveSnake()
         {
-            // Move snake's body
             for (int i = snakeLength; i > 0; i--)
             {
                 snake[i] = snake[i - 1];
             }
 
-            // Move snake's head
             switch (direction)
             {
                 case Direction.Up:
@@ -120,22 +113,19 @@ namespace Player
 
         private void CheckCollision()
         {
-            // Check for collision with boundaries
             if (snake[0].X < 0 || snake[0].X >= boardSize || snake[0].Y < 0 || snake[0].Y >= boardSize)
             {
                 GameOver();
                 return;
             }
 
-            // Check for collision with food
             if (snake[0] == food)
             {
                 score++;
-                snakeLength++; // Increase snake length
+                snakeLength++;
                 GenerateFood();
             }
 
-            // Check for collision with itself
             for (int i = 1; i < snakeLength; i++)
             {
                 if (snake[i] == snake[0])
@@ -148,20 +138,18 @@ namespace Player
 
         private void UpdateUI()
         {
-            // Update PictureBoxes to reflect snake's position
             foreach (var pb in pictureBoxes)
             {
-                pb.BackColor = Color.White; // Reset all cells to white
+                pb.BackColor = Color.White;
             }
 
             for (int i = 0; i < snakeLength; i++)
             {
-                pictureBoxes[snake[i].X, snake[i].Y].BackColor = Color.Black; // Draw snake
+                pictureBoxes[snake[i].X, snake[i].Y].BackColor = Color.Black;
             }
 
-            pictureBoxes[food.X, food.Y].BackColor = Color.Red; // Draw food
+            pictureBoxes[food.X, food.Y].BackColor = Color.Red;
 
-            // Update score label
             lblScore.Text = $"Score: {score}";
         }
 
@@ -176,8 +164,6 @@ namespace Player
 
             InitializeGame();
         }
-
-        // Direction enum
         private enum Direction
         {
             Up,
@@ -186,12 +172,10 @@ namespace Player
             Right
         }
 
-        private Direction direction = Direction.Right; // Initial direction
-
-        // KeyDown event handler
+        private Direction direction = Direction.Right;
         private void Snake_KeyDown(object sender, KeyEventArgs e)
         {
-            if (directionUpdated) return; // Prevent multiple direction changes in one tick
+            if (directionUpdated) return;
 
             switch (e.KeyCode)
             {
@@ -199,28 +183,28 @@ namespace Player
                     if (direction != Direction.Down)
                     {
                         direction = Direction.Up;
-                        directionUpdated = true; // Mark direction as updated
+                        directionUpdated = true;
                     }
                     break;
                 case Keys.Down:
                     if (direction != Direction.Up)
                     {
                         direction = Direction.Down;
-                        directionUpdated = true; // Mark direction as updated
+                        directionUpdated = true;
                     }
                     break;
                 case Keys.Left:
                     if (direction != Direction.Right)
                     {
                         direction = Direction.Left;
-                        directionUpdated = true; // Mark direction as updated
+                        directionUpdated = true;
                     }
                     break;
                 case Keys.Right:
                     if (direction != Direction.Left)
                     {
                         direction = Direction.Right;
-                        directionUpdated = true; // Mark direction as updated
+                        directionUpdated = true;
                     }
                     break;
                 case Keys.W:
@@ -236,7 +220,7 @@ namespace Player
 
         private void HandleWASDKeys(Keys key)
         {
-            if (directionUpdated) return; // Prevent multiple direction changes in one tick
+            if (directionUpdated) return;
 
             switch (key)
             {
@@ -244,28 +228,28 @@ namespace Player
                     if (direction != Direction.Down)
                     {
                         direction = Direction.Up;
-                        directionUpdated = true; // Mark direction as updated
+                        directionUpdated = true;
                     }
                     break;
                 case Keys.A:
                     if (direction != Direction.Right)
                     {
                         direction = Direction.Left;
-                        directionUpdated = true; // Mark direction as updated
+                        directionUpdated = true;
                     }
                     break;
                 case Keys.S:
                     if (direction != Direction.Up)
                     {
                         direction = Direction.Down;
-                        directionUpdated = true; // Mark direction as updated
+                        directionUpdated = true;
                     }
                     break;
                 case Keys.D:
                     if (direction != Direction.Left)
                     {
                         direction = Direction.Right;
-                        directionUpdated = true; // Mark direction as updated
+                        directionUpdated = true;
                     }
                     break;
             }

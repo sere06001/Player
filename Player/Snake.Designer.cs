@@ -41,7 +41,7 @@
             // lblScore
             // 
             lblScore.AutoSize = true;
-            lblScore.Location = new Point(357, 124);
+            lblScore.Location = new Point(526, 128);
             lblScore.Name = "lblScore";
             lblScore.Size = new Size(38, 15);
             lblScore.TabIndex = 0;

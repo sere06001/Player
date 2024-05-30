@@ -19,7 +19,9 @@ namespace Player
         private Point food;
         private System.Windows.Forms.Timer timer;
         private int score;
+        private int snakeLength;
         private bool alert;
+        private bool directionUpdated; // Flag to track direction updates
 
         public Snake()
         {
@@ -37,6 +39,8 @@ namespace Player
             score = 0;
             pictureBoxes = new PictureBox[boardSize, boardSize];
             snake = new Point[boardSize * boardSize];
+            snakeLength = 1; // Start with one segment
+            directionUpdated = false; // Reset the direction update flag
 
             // Initialize PictureBoxes and snake array
             for (int y = 0; y < boardSize; y++)
@@ -65,6 +69,10 @@ namespace Player
             timer = new System.Windows.Forms.Timer { Interval = 100 };
             timer.Tick += Timer_Tick;
             timer.Start();
+
+            // Add KeyDown event handler
+            this.KeyDown += new KeyEventHandler(Snake_KeyDown);
+            this.Focus(); // Make sure the form has focus to receive key events
         }
 
         private void GenerateFood()
@@ -73,7 +81,7 @@ namespace Player
             do
             {
                 food = new Point(rand.Next(0, boardSize), rand.Next(0, boardSize));
-            } while (Array.IndexOf(snake, food) != -1); // Ensure food is not on the snake
+            } while (Array.IndexOf(snake, food, 0, snakeLength) != -1); // Ensure food is not on the snake
         }
 
         private void Timer_Tick(object sender, EventArgs e)
@@ -81,12 +89,13 @@ namespace Player
             MoveSnake();
             CheckCollision();
             UpdateUI();
+            directionUpdated = false; // Reset the direction update flag
         }
 
         private void MoveSnake()
         {
             // Move snake's body
-            for (int i = snake.Length - 1; i > 0; i--)
+            for (int i = snakeLength; i > 0; i--)
             {
                 snake[i] = snake[i - 1];
             }
@@ -122,11 +131,12 @@ namespace Player
             if (snake[0] == food)
             {
                 score++;
+                snakeLength++; // Increase snake length
                 GenerateFood();
             }
 
             // Check for collision with itself
-            for (int i = 1; i < snake.Length; i++)
+            for (int i = 1; i < snakeLength; i++)
             {
                 if (snake[i] == snake[0])
                 {
@@ -144,9 +154,9 @@ namespace Player
                 pb.BackColor = Color.White; // Reset all cells to white
             }
 
-            foreach (var segment in snake)
+            for (int i = 0; i < snakeLength; i++)
             {
-                pictureBoxes[segment.X, segment.Y].BackColor = Color.Black; // Draw snake
+                pictureBoxes[snake[i].X, snake[i].Y].BackColor = Color.Black; // Draw snake
             }
 
             pictureBoxes[food.X, food.Y].BackColor = Color.Red; // Draw food
@@ -163,7 +173,7 @@ namespace Player
                 MessageBox.Show($"Game Over! Your score is {score}");
                 alert = true;
             }
-            
+
             InitializeGame();
         }
 
@@ -179,21 +189,84 @@ namespace Player
         private Direction direction = Direction.Right; // Initial direction
 
         // KeyDown event handler
-        private void Form1_KeyDown(object sender, KeyEventArgs e)
+        private void Snake_KeyDown(object sender, KeyEventArgs e)
         {
+            if (directionUpdated) return; // Prevent multiple direction changes in one tick
+
             switch (e.KeyCode)
             {
                 case Keys.Up:
-                    direction = Direction.Up;
+                    if (direction != Direction.Down)
+                    {
+                        direction = Direction.Up;
+                        directionUpdated = true; // Mark direction as updated
+                    }
                     break;
                 case Keys.Down:
-                    direction = Direction.Down;
+                    if (direction != Direction.Up)
+                    {
+                        direction = Direction.Down;
+                        directionUpdated = true; // Mark direction as updated
+                    }
                     break;
                 case Keys.Left:
-                    direction = Direction.Left;
+                    if (direction != Direction.Right)
+                    {
+                        direction = Direction.Left;
+                        directionUpdated = true; // Mark direction as updated
+                    }
                     break;
                 case Keys.Right:
-                    direction = Direction.Right;
+                    if (direction != Direction.Left)
+                    {
+                        direction = Direction.Right;
+                        directionUpdated = true; // Mark direction as updated
+                    }
+                    break;
+                case Keys.W:
+                case Keys.A:
+                case Keys.S:
+                case Keys.D:
+                    HandleWASDKeys(e.KeyCode);
+                    break;
+                default:
+                    break;
+            }
+        }
+
+        private void HandleWASDKeys(Keys key)
+        {
+            if (directionUpdated) return; // Prevent multiple direction changes in one tick
+
+            switch (key)
+            {
+                case Keys.W:
+                    if (direction != Direction.Down)
+                    {
+                        direction = Direction.Up;
+                        directionUpdated = true; // Mark direction as updated
+                    }
+                    break;
+                case Keys.A:
+                    if (direction != Direction.Right)
+                    {
+                        direction = Direction.Left;
+                        directionUpdated = true; // Mark direction as updated
+                    }
+                    break;
+                case Keys.S:
+                    if (direction != Direction.Up)
+                    {
+                        direction = Direction.Down;
+                        directionUpdated = true; // Mark direction as updated
+                    }
+                    break;
+                case Keys.D:
+                    if (direction != Direction.Left)
+                    {
+                        direction = Direction.Right;
+                        directionUpdated = true; // Mark direction as updated
+                    }
                     break;
             }
         }

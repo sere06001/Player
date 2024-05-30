@@ -19,6 +19,7 @@ namespace Player
         private Point food;
         private System.Windows.Forms.Timer timer;
         private int score;
+        private bool alert;
 
         public Snake()
         {
@@ -157,7 +158,12 @@ namespace Player
         private void GameOver()
         {
             timer.Stop();
-            MessageBox.Show($"Game Over! Your score is {score}");
+            if (!alert)
+            {
+                MessageBox.Show($"Game Over! Your score is {score}");
+                alert = true;
+            }
+            
             InitializeGame();
         }
 

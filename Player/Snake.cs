@@ -161,10 +161,15 @@ namespace Player
             {
                 pb.BackColor = Color.White;
             }
-
-            for (int i = 0; i < snakeLength; i++)
+            if (snakeLength > 0)
             {
-                pictureBoxes[snake[i].X, snake[i].Y].BackColor = Color.Black;
+                pictureBoxes[snake[0].X, snake[0].Y].BackColor = Color.Blue;
+            }
+            
+
+            for (int i = 1; i < snakeLength; i++)
+            {
+                pictureBoxes[snake[i].X, snake[i].Y].BackColor = Color.Green;
             }
 
             pictureBoxes[food.X, food.Y].BackColor = Color.Red;

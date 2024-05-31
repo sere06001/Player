@@ -88,7 +88,6 @@ namespace Player
             timer.Start();
 
             this.KeyDown += new KeyEventHandler(Snake_KeyDown);
-            this.FormClosing += new FormClosingEventHandler(Snake_FormClosing);
             this.Focus();
         }
 
@@ -301,11 +300,7 @@ namespace Player
             }
         }
 
-        private void Snake_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            isClosing = true;
-            timer.Stop();
-        }
+
 
         private void tillbakabtn_Click(object sender, EventArgs e)
         {

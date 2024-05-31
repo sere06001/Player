@@ -80,6 +80,7 @@
             // 
             // ruta9
             // 
+            ruta9.Font = new Font("Segoe UI", 25F);
             ruta9.Location = new Point(135, 135);
             ruta9.Name = "ruta9";
             ruta9.Size = new Size(60, 60);
@@ -89,6 +90,7 @@
             // 
             // ruta8
             // 
+            ruta8.Font = new Font("Segoe UI", 25F);
             ruta8.Location = new Point(69, 135);
             ruta8.Name = "ruta8";
             ruta8.Size = new Size(60, 60);
@@ -98,6 +100,7 @@
             // 
             // ruta7
             // 
+            ruta7.Font = new Font("Segoe UI", 25F);
             ruta7.Location = new Point(3, 135);
             ruta7.Name = "ruta7";
             ruta7.Size = new Size(60, 60);
@@ -107,6 +110,7 @@
             // 
             // ruta6
             // 
+            ruta6.Font = new Font("Segoe UI", 25F);
             ruta6.Location = new Point(135, 69);
             ruta6.Name = "ruta6";
             ruta6.Size = new Size(60, 60);
@@ -116,6 +120,7 @@
             // 
             // ruta5
             // 
+            ruta5.Font = new Font("Segoe UI", 25F);
             ruta5.Location = new Point(69, 69);
             ruta5.Name = "ruta5";
             ruta5.Size = new Size(60, 60);
@@ -125,6 +130,7 @@
             // 
             // ruta4
             // 
+            ruta4.Font = new Font("Segoe UI", 25F);
             ruta4.Location = new Point(3, 69);
             ruta4.Name = "ruta4";
             ruta4.Size = new Size(60, 60);
@@ -134,6 +140,7 @@
             // 
             // ruta3
             // 
+            ruta3.Font = new Font("Segoe UI", 25F);
             ruta3.Location = new Point(135, 3);
             ruta3.Name = "ruta3";
             ruta3.Size = new Size(60, 60);
@@ -143,6 +150,7 @@
             // 
             // ruta2
             // 
+            ruta2.Font = new Font("Segoe UI", 25F);
             ruta2.Location = new Point(69, 3);
             ruta2.Name = "ruta2";
             ruta2.Size = new Size(60, 60);
@@ -152,6 +160,7 @@
             // 
             // ruta1
             // 
+            ruta1.Font = new Font("Segoe UI", 25F);
             ruta1.Location = new Point(3, 3);
             ruta1.Name = "ruta1";
             ruta1.Size = new Size(60, 60);

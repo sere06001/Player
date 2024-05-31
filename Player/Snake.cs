@@ -178,8 +178,8 @@ namespace Player
             if (!alert && !isClosing)
             {
                 alert = true;
-                DialogResult result = MessageBox.Show($"Du lyckades äta {score} matbitar", "Du dog!", MessageBoxButtons.OKCancel);
-                if (result == DialogResult.OK)
+                DialogResult result = MessageBox.Show($"Du lyckades äta {score} matbitar\nVill du börja om?", "Du dog!", MessageBoxButtons.YesNo);
+                if (result == DialogResult.Yes)
                 {
                     if (!isClosing)
                     {

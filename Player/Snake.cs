@@ -169,7 +169,7 @@ namespace Player
 
             for (int i = 1; i < snakeLength; i++)
             {
-                pictureBoxes[snake[i].X, snake[i].Y].BackColor = Color.Green;
+                pictureBoxes[snake[i].X, snake[i].Y].BackColor = Color.Black;
             }
 
             pictureBoxes[food.X, food.Y].BackColor = Color.Red;
@@ -186,10 +186,7 @@ namespace Player
                 DialogResult result = MessageBox.Show($"Du lyckades äta {score} matbitar\nVill du börja om?", "Du dog!", MessageBoxButtons.YesNo);
                 if (result == DialogResult.Yes)
                 {
-                    if (!isClosing)
-                    {
-                        ResetGame();
-                    }
+                    ResetGame();
                 }
                 else
                 {

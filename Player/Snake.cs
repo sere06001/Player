@@ -76,7 +76,10 @@ namespace Player
             };
             this.Controls.Add(lblScore);
 
-            snake[0] = new Point(2, boardSize / 2);
+            for (int i = 0; i < 4; i++)
+            {
+                snake[i] = new Point(2, boardSize / 2);
+            }
 
             GenerateFood();
 
